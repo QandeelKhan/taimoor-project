@@ -153,6 +153,31 @@ subprocess.run(["git", "push", "-u", "origin", "main"])
 pprint("\033[1;32m" + "...changes pushed successfully" + "\033[0m")
 time.sleep(3)
 
+# --------NEW WORKING BRANCH
+# Replace <PAT> with your Personal Access Token
+
+# Replace <OWNER> and <REPO> with your GitHub repository information
+# The API endpoint to create a new branch
+url = f"https://api.github.com/repos/{username}/{repo_name}/git/refs"
+
+# Define the branch name
+data = {
+    "ref": "refs/heads/backup-branch"
+}
+
+# Make a POST request to create the new branch
+response = requests.post(url, json=data, headers=headers)
+
+# Check if the request was successful
+if response.status_code == 201:
+    print(colored("Branch created successfully", "cyan"))
+else:
+    print(
+        colored(f"Failed to create branch: {response.json()['message']}", "red"))
+
+# --------NEW WORKING BRANCH
+
+
 # Confirm completion
 pprint("initial script has been done ✅")
 time.sleep(3)
