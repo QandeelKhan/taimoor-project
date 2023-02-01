@@ -74,3 +74,13 @@ bash cmd to create a repository on github
 curl -u $GH_USERNAME:$GH_TOKEN https://api.github.com/user/repos -d '{"name":"<repo_name>"}'
 
 This will use the environment variables to access your GitHub credentials, so you don't have to type them every time.
+# ---------To push changes from the main branch to the backup branch, 
+you need to checkout the backup branch and merge the changes from the main branch into it. 
+Here's the steps to do that in the terminal:
+
+    Checkout the main branch: git checkout main
+    Fetch the latest changes from the remote repository: git fetch
+    Merge the changes from the main branch into the backup branch: git checkout backup-branch && git merge main
+    Push the changes to the remote repository: git push
+
+Note: Replace main and backup-branch with the actual names of your branches.
