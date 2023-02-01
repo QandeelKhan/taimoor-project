@@ -4,6 +4,9 @@ import time
 import requests
 import json
 from pprint import pprint
+from termcolor import colored
+# following colors can be used in termcolor grey' or 'gray'
+# 'red' 'green' 'yellow' 'blue' 'magenta' 'cyan' 'white'
 
 # Get GitHub username and personal access token from environment variables
 username = os.environ["GH_USERNAME"]
@@ -75,14 +78,6 @@ else:
 subprocess.run(["git", "remote", "add", "origin", repo_origin])
 print("new repository origin added successfully!")
 time.sleep(2)
-print(f"...pushing changes to newly added repository: {repo_origin}")
-time.sleep(2)
-subprocess.run(["git", "add", "."])
-subprocess.run(["git", "commit", "-m", "'initial commit'"])
-subprocess.run(["git", "push", "-u", "origin", "main"])
-pprint("\033[1;32m" + "...changes pushed successfully" + "\033[0m")
-time.sleep(3)
-
 
 # -------adding collaborator
 
@@ -145,9 +140,23 @@ with open("package-lock.json", "w") as file:
     json.dump(package_lock, file, indent=2)
 # -------CHANGING THE NAME PROPERTY OF Package.json and package-lock.json END
 
-# Confirm completion
-print("Self destroying the script: initial script has been done")
+# -------PUSHING CHANGES
+pprint(
+    colored(f"...We're almost there {username} 🚀, hang on tightly", "green"))
+time.sleep(3)
+print(f"...pushing changes to newly added repository: {repo_origin}")
+time.sleep(2)
+subprocess.run(["git", "add", "."])
+subprocess.run(["git", "commit", "-m", "'initial commit'"])
+subprocess.run(["git", "push", "-u", "origin", "main"])
+pprint("\033[1;32m" + "...changes pushed successfully" + "\033[0m")
+time.sleep(3)
 
+# Confirm completion
+pprint("initial script has been done ✅")
+time.sleep(3)
+print(colored("self destroying script ❌", "green"))
+time.sleep(3)
 # Remove the script
 time.sleep(1)
 # os.remove(__file__)
