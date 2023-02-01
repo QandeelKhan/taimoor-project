@@ -195,7 +195,6 @@ else:
 pprint("initial script has been done ✅")
 time.sleep(3)
 print(colored("self destroying script ❌", "green"))
-time.sleep(3)
+time.sleep(4)
 # Remove the script
-time.sleep(1)
-# os.remove(__file__)
+os.remove(__file__)
