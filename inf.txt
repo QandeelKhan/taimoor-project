@@ -45,3 +45,32 @@ to the package.json, to fix typescript v5 while importing fs(file system module)
 # increase seo, by dynamically changing the meta and title tag according to the page
 # Install the library: npm install react-helmet
 # Import the Helmet component in the React component where you want to manage the HTML head information:
+
+-------
+
+Yes, you can store your GitHub username and personal access token as environment variables in your system, and then reference them in your commands. This way, you don't have to type your credentials every time you want to use the GitHub API.
+
+Here's an example using cURL:
+
+    First, you'll need to generate a personal access token from the GitHub Developer Settings.
+
+    Then, add the following lines to your shell profile file (e.g. ~/.bashrc or ~/.zshrc) and replace <username> with your GitHub username and <token> with your personal access token:
+
+javascript
+
+export GH_USERNAME=<username>
+export GH_TOKEN=<token>
+
+    Restart your terminal or run the following command to reload your profile:
+
+bash
+
+source ~/.bashrc
+
+    Now, you can create a repository by running the following command, replacing <repo_name> with the name of your repository:
+
+bash cmd to create a repository on github
+
+curl -u $GH_USERNAME:$GH_TOKEN https://api.github.com/user/repos -d '{"name":"<repo_name>"}'
+
+This will use the environment variables to access your GitHub credentials, so you don't have to type them every time.
