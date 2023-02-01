@@ -2,6 +2,7 @@ import os
 import subprocess
 import time
 import requests
+import json
 
 # Get GitHub username and personal access token from environment variables
 username = os.environ["GH_USERNAME"]
@@ -110,8 +111,32 @@ while add_collaborators in ["yes", "y"]:
 
 if add_collaborators in ["no", "n"]:
     print(f"No more collaborators added other then {collaborator_username}.")
-# -------adding collaborator
+# -------ADDING COLLABORATOR END
 
+
+# -------CHANGING THE NAME PROPERTY OF Package.json and package-lock.json
+# -----package.json
+with open("package.json", "r") as file:
+    package = json.load(file)
+
+# Update the name field
+package["name"] = "new-name"
+
+# Write the updated contents back to the package.json file
+with open("package.json", "w") as file:
+    json.dump(package, file, indent=2)
+# -----package-lock.json
+# Load the contents of the package-lock.json file
+with open("package-lock.json", "r") as file:
+    package_lock = json.load(file)
+
+# Update the name field
+package_lock["name"] = "new-name"
+
+# Write the updated contents back to the package-lock.json file
+with open("package-lock.json", "w") as file:
+    json.dump(package_lock, file, indent=2)
+# -------CHANGING THE NAME PROPERTY OF Package.json and package-lock.json END
 
 # Confirm completion
 print("Self destroying the script: initial script has been done")
