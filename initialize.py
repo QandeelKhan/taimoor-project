@@ -7,6 +7,7 @@ import requests
 username = os.environ["GH_USERNAME"]
 token = os.environ["GH_TOKEN"]
 email = os.environ["GH_EMAIL"]
+api_base_url = "https://api.github.com"
 
 # installing npm packages
 print("...Installing npm dependencies")
@@ -20,36 +21,46 @@ subprocess.run(["git", "remote", "remove", "origin"])
 
 
 # -----------CREATING NEW ORIGIN
+
 # Prompt the user for the repository name
 repo_name = input("Enter the name of the repository you want to create: ")
+repo_description = input(
+    "Please enter the description of the repository you want to create: ")
 
 # Define the API endpoint
-endpoint = f"https://api.github.com/users/{username}/repos"
+# endpoint = f"https://api.github.com/users/{username}/repos"
 
 # Set up authentication headers
 headers = {
-    "Authorization": f"Token {token}"
+    "Authorization": f"Bearer {token}"
 }
 
 # Define the request data
 data = {
-    "name": repo_name
+    "name": repo_name,
+    "description": "This is my new repository",
+    "private": False
 }
 
 # Make the API request
-response = requests.post(endpoint, headers=headers, json=data)
+response = requests.post(f"{api_base_url}/user/repos",
+                         headers=headers, json=data)
 
 # Check the response status code
 if response.status_code == 201:
     print(f"Successfully created repository: {repo_name}")
     repo_origin = f"https://github.com/{username}/{repo_name}"
     print(f"Repository origin address: {repo_origin}")
-
 else:
     print(f"Failed to create repository: {repo_name}")
-    print(f"Response: {response.text}")
+    print(f"Response status code: {response.status_code}")
+    try:
+        response_json = response.json()
+        print(f"Response message: {response_json['message']}")
+    except:
+        print(f"Response: {response.text}")
 
-# wait
+# Self-destruct after 1 seconds
 time.sleep(1)
 # -----------CREATING NEW ORIGIN
 
