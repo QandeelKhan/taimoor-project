@@ -114,8 +114,8 @@ if add_collaborators in ["no", "n"]:
 
 
 # Confirm completion
-print("...Self destroying the script: initial script has been done")
+print("Self destroying the script: initial script has been done")
 
 # Remove the script
-time.sleep(3)
+time.sleep(1)
 # os.remove(__file__)
