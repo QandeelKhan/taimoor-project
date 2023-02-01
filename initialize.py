@@ -39,7 +39,7 @@ headers = {
 # Define the request data
 data = {
     "name": repo_name,
-    "description": "This is my new repository",
+    "description": repo_description,
     "private": False
 }
 
@@ -52,6 +52,13 @@ if response.status_code == 201:
     print(f"Successfully created repository: {repo_name}")
     repo_origin = f"https://github.com/{username}/{repo_name}"
     print(f"Repository origin address: {repo_origin}")
+    time.sleep(2)
+    print(f"pushing changes to newly added repository: {repo_origin}")
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", "'initial commit'"])
+    subprocess.run(["git", "push", "-u", "origin", "main"])
+    print(f"...changes pushed successfully")
+    time.sleep(3)
 else:
     print(f"Failed to create repository: {repo_name}")
     print(f"Response status code: {response.status_code}")
@@ -77,9 +84,7 @@ time.sleep(2)
 
 
 # -------adding collaborator
-headers = {
-    "Authorization": f"Bearer {token}"
-}
+
 # Prompt the user to confirm if they have collaborators to add
 add_collaborators = input(
     "Do you have any collaborators to add? (yes/no): ").lower()
@@ -91,7 +96,7 @@ while add_collaborators in ["yes", "y"]:
     collaborator_username = input("Enter the username of the collaborator: ")
 
     # Define the API endpoint
-    endpoint = f"https://api.github.com/repos/{username}/{repo_name}/collaborators/{collaborator_username}"
+    endpoint = f"{api_base_url}/repos/{username}/{repo_name}/collaborators/{collaborator_username}"
 
     # Make the API request to add the collaborator
     response = requests.put(endpoint, headers=headers)
