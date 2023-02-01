@@ -3,6 +3,7 @@ import subprocess
 import time
 import requests
 import json
+import pprint
 
 # Get GitHub username and personal access token from environment variables
 username = os.environ["GH_USERNAME"]
@@ -79,7 +80,7 @@ time.sleep(2)
 subprocess.run(["git", "add", "."])
 subprocess.run(["git", "commit", "-m", "'initial commit'"])
 subprocess.run(["git", "push", "-u", "origin", "main"])
-print(f"...changes pushed successfully")
+pprint(f"...changes pushed successfully")
 time.sleep(3)
 
 
@@ -102,9 +103,10 @@ while add_collaborators in ["yes", "y"]:
     response = requests.put(endpoint, headers=headers)
 
     # Check the response status code
-    if response.status_code == 204:
+    # if response.status_code == 204:
+    if response.status_code == 201:
         print(f"Successfully added collaborator: {collaborator_username}")
-        time.sleep(2)
+        time.sleep(3)
     else:
         print(f"Failed to add collaborator: {collaborator_username}")
         print(f"Response: {response.text}")
