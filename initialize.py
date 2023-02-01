@@ -53,12 +53,6 @@ if response.status_code == 201:
     repo_origin = f"https://github.com/{username}/{repo_name}"
     print(f"Repository origin address: {repo_origin}")
     time.sleep(2)
-    print(f"pushing changes to newly added repository: {repo_origin}")
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", "'initial commit'"])
-    subprocess.run(["git", "push", "-u", "origin", "main"])
-    print(f"...changes pushed successfully")
-    time.sleep(3)
 else:
     print(f"Failed to create repository: {repo_name}")
     print(f"Response status code: {response.status_code}")
@@ -69,7 +63,6 @@ else:
         print(f"Response: {response.text}")
 
 # Self-destruct after 1 seconds
-time.sleep(1)
 # -----------CREATING NEW ORIGIN END
 
 
@@ -81,6 +74,13 @@ time.sleep(1)
 subprocess.run(["git", "remote", "add", "origin", repo_origin])
 print("new repository origin added successfully!")
 time.sleep(2)
+print(f"...pushing changes to newly added repository: {repo_origin}")
+time.sleep(2)
+subprocess.run(["git", "add", "."])
+subprocess.run(["git", "commit", "-m", "'initial commit'"])
+subprocess.run(["git", "push", "-u", "origin", "main"])
+print(f"...changes pushed successfully")
+time.sleep(3)
 
 
 # -------adding collaborator
