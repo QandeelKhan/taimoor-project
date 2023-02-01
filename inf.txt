@@ -25,3 +25,23 @@ lua
     git config --global user.email
 
 This sets up Git to use the same username and email for all your projects. You can change the configuration for a specific project by using the git config command without the --global flag.
+
+-----
+svgr example: npx @svgr/cli -- src/components/icons/UserIcon.svg
+execute python3 script: python3 ./<filename>.py
+
+
+
+
+about project
+we added the object ("browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+})  
+to the package.json, to fix typescript v5 while importing fs(file system module) else downgrade to v4 until not fixed in v5
+
+# ---react-helmet---
+# increase seo, by dynamically changing the meta and title tag according to the page
+# Install the library: npm install react-helmet
+# Import the Helmet component in the React component where you want to manage the HTML head information:
