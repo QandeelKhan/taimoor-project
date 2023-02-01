@@ -70,7 +70,6 @@ else:
         except:
             print(f"Response: {response.text}")
 
-    # Self-destruct after 1 seconds
     # -----------CREATING NEW ORIGIN END
 
     # -----------ADD NEW ORIGIN START
@@ -120,12 +119,15 @@ else:
     # -------ADDING COLLABORATOR END
 
     # -------CHANGING THE NAME PROPERTY OF Package.json and package-lock.json
-    # -----package.json
+# -----package.json
     with open("package.json", "r") as file:
         package = json.load(file)
 
+    # Convert repo_name to a string
+    project_name = str(repo_name)
+
     # Update the name field
-    package["name"] = "new-name"
+    package["name"] = project_name
 
     # Write the updated contents back to the package.json file
     with open("package.json", "w") as file:
@@ -136,11 +138,12 @@ else:
         package_lock = json.load(file)
 
     # Update the name field
-    package_lock["name"] = "new-name"
+    package_lock["name"] = project_name
 
     # Write the updated contents back to the package-lock.json file
     with open("package-lock.json", "w") as file:
         json.dump(package_lock, file, indent=2)
+
     # -------CHANGING THE NAME PROPERTY OF Package.json and package-lock.json END
 
     # -------PUSHING CHANGES
