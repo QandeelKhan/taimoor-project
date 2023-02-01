@@ -28,7 +28,7 @@ repo_description = input(
     "Please enter the description of the repository you want to create: ")
 
 # Define the API endpoint
-# endpoint = f"https://api.github.com/users/{username}/repos"
+# endpoint = f"https://api.github.com/user/{username}/repos"
 
 # Set up authentication headers
 headers = {
@@ -62,21 +62,22 @@ else:
 
 # Self-destruct after 1 seconds
 time.sleep(1)
-# -----------CREATING NEW ORIGIN
+# -----------CREATING NEW ORIGIN END
 
 
+# -----------ADD NEW ORIGIN START
 # Ask for new origin
 # origin_url = input("Enter the new origin URL: ")
 
 # Add the new origin
 subprocess.run(["git", "remote", "add", "origin", repo_origin])
 print("new repository origin added successfully!")
-time.sleep(1)
+time.sleep(2)
 
 
 # -------adding collaborator
 headers = {
-    "Authorization": f"Token {token}"
+    "Authorization": f"Bearer {token}"
 }
 # Prompt the user to confirm if they have collaborators to add
 add_collaborators = input(
@@ -97,16 +98,18 @@ while add_collaborators in ["yes", "y"]:
     # Check the response status code
     if response.status_code == 204:
         print(f"Successfully added collaborator: {collaborator_username}")
+        time.sleep(2)
     else:
         print(f"Failed to add collaborator: {collaborator_username}")
         print(f"Response: {response.text}")
+        time.sleep(2)
 
     # Prompt the user to confirm if they have another collaborator to add
     add_collaborators = input(
         "Do you have another collaborator to add? (yes/no): ").lower()
 
 if add_collaborators in ["no", "n"]:
-    print("No collaborators added.")
+    print(f"No more collaborators added other then {collaborator_username}.")
 # -------adding collaborator
 
 
@@ -115,4 +118,4 @@ print("Self destroying the script: initial script has been done")
 
 # Remove the script
 time.sleep(1)
-os.remove(__file__)
+# os.remove(__file__)
