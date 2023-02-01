@@ -141,7 +141,7 @@ with open("package-lock.json", "w") as file:
 # -------CHANGING THE NAME PROPERTY OF Package.json and package-lock.json END
 
 # -------PUSHING CHANGES
-pprint(
+print(
     colored(f"...We're almost there {username} 🚀, hang on tightly", "green"))
 time.sleep(3)
 print(f"...pushing changes to newly added repository: {repo_origin}")
