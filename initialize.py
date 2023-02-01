@@ -3,7 +3,7 @@ import subprocess
 import time
 import requests
 import json
-import pprint
+from pprint import pprint
 
 # Get GitHub username and personal access token from environment variables
 username = os.environ["GH_USERNAME"]
@@ -80,7 +80,7 @@ time.sleep(2)
 subprocess.run(["git", "add", "."])
 subprocess.run(["git", "commit", "-m", "'initial commit'"])
 subprocess.run(["git", "push", "-u", "origin", "main"])
-pprint(f"...changes pushed successfully")
+pprint("\033[1;32m" + "...changes pushed successfully" + "\033[0m")
 time.sleep(3)
 
 
