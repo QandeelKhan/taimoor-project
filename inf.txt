@@ -1,0 +1,27 @@
+Open the terminal.
+also create a PAT personal access token from the settings of the account
+Type the following command to set your username in Git:
+
+python
+
+git config --global user.name "Your_Username"
+
+Type the following command to set your email in Git:
+
+python
+
+git config --global user.email "your_email@example.com"
+
+To verify the configuration, type:
+
+lua
+
+git config --global user.name
+
+and
+
+lua
+
+    git config --global user.email
+
+This sets up Git to use the same username and email for all your projects. You can change the configuration for a specific project by using the git config command without the --global flag.
