@@ -153,16 +153,30 @@ subprocess.run(["git", "push", "-u", "origin", "main"])
 pprint("\033[1;32m" + "...changes pushed successfully" + "\033[0m")
 time.sleep(3)
 
-# --------NEW WORKING BRANCH
-# Replace <PAT> with your Personal Access Token
+# --------NEW BACKUP BRANCH
 
 # Replace <OWNER> and <REPO> with your GitHub repository information
+# The API endpoint to get the latest commit sha for an existing branch
+url = f"https://api.github.com/repos/{username}/{repo_name}/git/refs/heads/main"
+
+# Make a GET request to retrieve the latest commit sha for the branch
+response = requests.get(url, headers=headers)
+
+# Check if the request was successful
+if response.status_code == 200:
+    latest_commit_sha = response.json()["object"]["sha"]
+else:
+    print(
+        f"Failed to retrieve latest commit sha: {response.json()['message']}")
+    exit()
+
 # The API endpoint to create a new branch
 url = f"https://api.github.com/repos/{username}/{repo_name}/git/refs"
 
-# Define the branch name
+# Define the branch name and the latest commit sha
 data = {
-    "ref": "refs/heads/backup-branch"
+    "ref": "refs/heads/backup-branch",
+    "sha": latest_commit_sha
 }
 
 # Make a POST request to create the new branch
@@ -170,12 +184,11 @@ response = requests.post(url, json=data, headers=headers)
 
 # Check if the request was successful
 if response.status_code == 201:
-    print(colored("Branch created successfully", "cyan"))
+    print("Branch created successfully")
 else:
-    print(
-        colored(f"Failed to create branch: {response.json()['message']}", "red"))
+    print(f"Failed to create branch: {response.json()['message']}")
 
-# --------NEW WORKING BRANCH
+# --------NEW BACKUP BRANCH
 
 
 # Confirm completion
