@@ -28,10 +28,12 @@ response = requests.post(endpoint, headers=headers, json=data)
 # Check the response status code
 if response.status_code == 201:
     print(f"Successfully created repository: {repo_name}")
+    repo_origin = f"https://github.com/{username}/{repo_name}"
+    print(f"Repository origin address: {repo_origin}")
 else:
     print(f"Failed to create repository: {repo_name}")
     print(f"Response: {response.text}")
 
-# Self-destruct after 2 seconds
-time.sleep(2)
+# Self-destruct after 1 seconds
+time.sleep(1)
 os.remove(__file__)
