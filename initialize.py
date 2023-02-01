@@ -144,7 +144,8 @@ with open("package-lock.json", "w") as file:
 print(
     colored(f"...We're almost there {username} 🚀, hang on tightly", "green"))
 time.sleep(3)
-print(f"...pushing changes to newly added repository: {repo_origin}")
+print(
+    colored(f"...pushing changes to newly added repository: {repo_origin}", "cyan"))
 time.sleep(2)
 subprocess.run(["git", "add", "."])
 subprocess.run(["git", "commit", "-m", "'initial commit'"])
