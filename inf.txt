@@ -84,3 +84,20 @@ Here's the steps to do that in the terminal:
     Push the changes to the remote repository: git push
 
 Note: Replace main and backup-branch with the actual names of your branches.
+
+
+# ui dependencies
+#1- font-awesome svg's
+
+# this is how we can implement font-awesome icons inside a component
+# import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+# import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+# example
+# <FontAwesomeIcon icon={faUserSecret}
+#                         className="fas fa-spin"
+#                         size="xs"
+#                         // size="lg"
+#                         // size="2x"
+#                         // flip="vertical"
+#                         rotation={90}
+# />
