@@ -35,15 +35,6 @@ const Home = () => {
             <section id="home">
                 <div className="home-container">
                     <h1>i am home</h1>
-                    <FontAwesomeIcon
-                        icon={faUserSecret}
-                        className="fas fa-spin"
-                        size="xs"
-                        // size="lg"
-                        // size="2x"
-                        // flip="vertical"
-                        rotation={90}
-                    />
                 </div>
             </section>
         </>
