@@ -36,7 +36,8 @@ const Registration = () => {
         const data = new FormData(e.currentTarget);
         // this email can be target by the "name" property of html/jsx element.
         const actualData = {
-            name: data.get("name"),
+            first_name: data.get("first_name"),
+            last_name: data.get("last_name"),
             email: data.get("email"),
             password: data.get("password"),
             password2: data.get("password2"),
