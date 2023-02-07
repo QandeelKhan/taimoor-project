@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import { CssBaseline } from "@mui/material";
 import { Outlet, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import {
@@ -36,6 +37,7 @@ const Layout: React.FC = () => {
             {/* <BlogDetailSidebar /> */}
             {/* <ThemeWrapper key={key}>
                     </ThemeWrapper> */}
+            {/* <CssBaseline /> */}
             <div>
                 <Outlet key={key} />
             </div>
