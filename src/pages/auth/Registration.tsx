@@ -64,8 +64,8 @@ const Registration = () => {
     return (
         <form id="registration-form" onSubmit={handleSubmit}>
             <div>
-                <input type="text" name="name" id="name" required />
-                <label htmlFor="name">Name</label>
+                <input type="text" name="first_name" id="first_name" required />
+                <label htmlFor="name">First Name</label>
                 {serverError.name && (
                     <div
                         style={{
@@ -74,7 +74,22 @@ const Registration = () => {
                             paddingLeft: "10px",
                         }}
                     >
-                        {serverError.name[0]}
+                        {/* {serverError.name[0]} */}
+                    </div>
+                )}
+            </div>
+            <div>
+                <input type="text" name="last_name" id="last_name" required />
+                <label htmlFor="name">Last Name</label>
+                {serverError.name && (
+                    <div
+                        style={{
+                            color: "red",
+                            fontSize: "12px",
+                            paddingLeft: "10px",
+                        }}
+                    >
+                        {/* {serverError.name[0]} */}
                     </div>
                 )}
             </div>
