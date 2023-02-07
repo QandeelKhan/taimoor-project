@@ -2,10 +2,11 @@ import eventsReducer from "./reducers/eventsSlice";
 import { configureStore, isRejectedWithValue } from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { userAuthApi } from "../services/userAuthApi";
 // name our authSlice.ts as authReducer
-import authReducer from "../features/authSlice";
-import userReducer from "../features/userSlice";
+
+import { userAuthApi } from "./services/userAuthApi";
+import authReducer from "./features/authSlice";
+import userReducer from "./features/userSlice";
 // ...
 
 export const store = configureStore({

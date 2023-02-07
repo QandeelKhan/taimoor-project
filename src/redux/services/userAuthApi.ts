@@ -6,7 +6,7 @@ import {
     fetchBaseQuery,
     FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../app/store";
+import { RootState } from "../store";
 import { setUserToken, unSetUserToken } from "../features/authSlice";
 import { userAuthApiExtended } from "./userAuthApiExtended";
 import { getToken, removeToken, storeToken } from "./localStorageService";
