@@ -67,7 +67,7 @@ const Registration = () => {
             <div>
                 <input type="text" name="first_name" id="first_name" required />
                 <label htmlFor="name">First Name</label>
-                {serverError.name && (
+                {serverError.first_name && (
                     <div
                         style={{
                             color: "red",
@@ -82,7 +82,7 @@ const Registration = () => {
             <div>
                 <input type="text" name="last_name" id="last_name" required />
                 <label htmlFor="name">Last Name</label>
-                {serverError.name && (
+                {serverError.last_name && (
                     <div
                         style={{
                             color: "red",
