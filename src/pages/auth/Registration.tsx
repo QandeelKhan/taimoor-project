@@ -75,7 +75,7 @@ const Registration = () => {
                             paddingLeft: "10px",
                         }}
                     >
-                        {/* {serverError.name[0]} */}
+                        {serverError.name[0]}
                     </div>
                 )}
             </div>
@@ -90,7 +90,7 @@ const Registration = () => {
                             paddingLeft: "10px",
                         }}
                     >
-                        {/* {serverError.name[0]} */}
+                        {serverError.name[0]}
                     </div>
                 )}
             </div>
