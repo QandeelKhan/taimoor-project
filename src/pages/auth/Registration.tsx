@@ -12,7 +12,7 @@ import { BaseSyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../redux/services/userAuthApi";
 import { storeToken } from "../../redux/services/localStorageService";
-import GoogleRegistration from "./GoogleRegistration";
+import GoogleRegistration from "../../components/GoogleRegistration";
 
 // const serverErrorInterface = {
 //     name: String,

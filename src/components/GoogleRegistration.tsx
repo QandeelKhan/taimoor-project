@@ -2,8 +2,8 @@ import React, { BaseSyntheticEvent, useState } from "react";
 // import { useHistory } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { LoginSocialGoogle } from "reactjs-social-login";
-import RemainingForm from "../../components/RemainingForm";
-import { useRegisterUserMutation } from "../../redux/services/userAuthApi";
+import RemainingForm from "./RemainingForm";
+import { useRegisterUserMutation } from "../redux/services/userAuthApi";
 
 const GoogleRegistration = () => {
     const [termsAndConditions, setTermsAndConditions] = React.useState(false);

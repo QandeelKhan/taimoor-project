@@ -1,14 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    solid,
-    regular,
-    brands,
-    icon,
-} from "@fortawesome/fontawesome-svg-core/import.macro";
 import "../components/css/home.css";
-import { faCoffee, faUserSecret } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -35,6 +28,7 @@ const Home = () => {
             <section id="home">
                 <div className="home-container">
                     <h1>i am home</h1>
+                    <Link to={"/registration"}>Login / Sign up</Link>
                 </div>
             </section>
         </>
