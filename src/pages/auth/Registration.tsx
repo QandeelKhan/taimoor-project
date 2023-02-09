@@ -12,6 +12,7 @@ import { BaseSyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../redux/services/userAuthApi";
 import { storeToken } from "../../redux/services/localStorageService";
+import GoogleRegistration from "./GoogleRegistration";
 
 // const serverErrorInterface = {
 //     name: String,
@@ -63,104 +64,124 @@ const Registration = () => {
         }
     };
     return (
-        <form id="registration-form" onSubmit={handleSubmit}>
-            <div>
-                <input type="text" name="first_name" id="first_name" required />
-                <label htmlFor="name">First Name</label>
-                {serverError.first_name && (
-                    <div
-                        style={{
-                            color: "red",
-                            fontSize: "12px",
-                            paddingLeft: "10px",
-                        }}
-                    >
-                        {serverError.name[0]}
-                    </div>
-                )}
-            </div>
-            <div>
-                <input type="text" name="last_name" id="last_name" required />
-                <label htmlFor="name">Last Name</label>
-                {serverError.last_name && (
-                    <div
-                        style={{
-                            color: "red",
-                            fontSize: "12px",
-                            paddingLeft: "10px",
-                        }}
-                    >
-                        {serverError.name[0]}
-                    </div>
-                )}
-            </div>
-            <div>
-                <input type="email" name="email" id="email" required />
-                <label htmlFor="email">Email Address</label>
-                {serverError.email && (
-                    <div
-                        style={{
-                            color: "red",
-                            fontSize: "12px",
-                            paddingLeft: "10px",
-                        }}
-                    >
-                        {serverError.email[0]}
-                    </div>
-                )}
-            </div>
-            <div>
-                <input type="password" name="password" id="password" required />
-                <label htmlFor="password">Password</label>
-                {serverError.password && (
-                    <div
-                        style={{
-                            color: "red",
-                            fontSize: "12px",
-                            paddingLeft: "10px",
-                        }}
-                    >
-                        {serverError.password[0]}
-                    </div>
-                )}
-            </div>
-            <div>
-                <input
-                    type="password"
-                    name="password2"
-                    id="password2"
-                    required
-                />
-                <label htmlFor="password2">Confirm Password</label>
-                {serverError.password2 && (
-                    <div
-                        style={{
-                            color: "red",
-                            fontSize: "12px",
-                            paddingLeft: "10px",
-                        }}
-                    >
-                        {serverError.password2[0]}
-                    </div>
-                )}
-            </div>
-            <div>
-                <input type="checkbox" id="tc" name="tc" required />
-                <label htmlFor="tc">I accept the terms and conditions</label>
-                {serverError.tc && (
-                    <div
-                        style={{
-                            color: "red",
-                            fontSize: "12px",
-                            paddingLeft: "10px",
-                        }}
-                    >
-                        {serverError.tc[0]}
-                    </div>
-                )}
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+        <>
+            <form id="registration-form" onSubmit={handleSubmit}>
+                <div>
+                    <input
+                        type="text"
+                        name="first_name"
+                        id="first_name"
+                        required
+                    />
+                    <label htmlFor="name">First Name</label>
+                    {serverError.first_name && (
+                        <div
+                            style={{
+                                color: "red",
+                                fontSize: "12px",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            {serverError.name[0]}
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        name="last_name"
+                        id="last_name"
+                        required
+                    />
+                    <label htmlFor="name">Last Name</label>
+                    {serverError.last_name && (
+                        <div
+                            style={{
+                                color: "red",
+                                fontSize: "12px",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            {serverError.name[0]}
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <input type="email" name="email" id="email" required />
+                    <label htmlFor="email">Email Address</label>
+                    {serverError.email && (
+                        <div
+                            style={{
+                                color: "red",
+                                fontSize: "12px",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            {serverError.email[0]}
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        required
+                    />
+                    <label htmlFor="password">Password</label>
+                    {serverError.password && (
+                        <div
+                            style={{
+                                color: "red",
+                                fontSize: "12px",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            {serverError.password[0]}
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        name="password2"
+                        id="password2"
+                        required
+                    />
+                    <label htmlFor="password2">Confirm Password</label>
+                    {serverError.password2 && (
+                        <div
+                            style={{
+                                color: "red",
+                                fontSize: "12px",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            {serverError.password2[0]}
+                        </div>
+                    )}
+                </div>
+                <div>
+                    <input type="checkbox" id="tc" name="tc" required />
+                    <label htmlFor="tc">
+                        I accept the terms and conditions
+                    </label>
+                    {serverError.tc && (
+                        <div
+                            style={{
+                                color: "red",
+                                fontSize: "12px",
+                                paddingLeft: "10px",
+                            }}
+                        >
+                            {serverError.tc[0]}
+                        </div>
+                    )}
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <GoogleRegistration />
+        </>
     );
 };
 

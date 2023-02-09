@@ -11,6 +11,10 @@ function App() {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/registration" element={<Registration />} />
+                    {/* <Route
+                        path="/registration"
+                        element={<GoogleRegistration />}
+                    /> */}
                 </Route>
             </Routes>
         </Router>
