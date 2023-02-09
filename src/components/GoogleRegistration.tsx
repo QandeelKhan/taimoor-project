@@ -4,12 +4,25 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import { LoginSocialGoogle } from "reactjs-social-login";
 import RemainingForm from "./RemainingForm";
 import { useRegisterUserMutation } from "../redux/services/userAuthApi";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
+import {
+    setFirstName,
+    setLastName,
+    setEmail,
+    setPassword,
+    setPassword2,
+    setProviderName,
+} from "../redux/features/authSlice";
 
 const GoogleRegistration = () => {
     const [termsAndConditions, setTermsAndConditions] = React.useState(false);
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setLastName] = React.useState("");
-    const [email, setEmail] = React.useState("");
+    const { firstName, lastName, email, password, password2 } = useSelector(
+        (state: RootState) => state.auth
+    );
+    const dispatch = useDispatch();
+
     const [accessToken, setAccessToken] = React.useState("");
     const [registerUser, { isLoading }] = useRegisterUserMutation();
     const [verifiedGoogleUser, setVerifiedGoogleUser] = useState(false);
@@ -34,10 +47,12 @@ const GoogleRegistration = () => {
             console.log(
                 `first name is:${firstName}, $ last name is ${lastName}`
             );
-            setFirstName(firstName);
-            setLastName(lastName);
-            setEmail(data.email);
+            dispatch(setFirstName(firstName));
+            dispatch(setLastName(lastName));
+            dispatch(setEmail(data.email));
+            dispatch(setProviderName(provider));
             setAccessToken(data.access_token);
+
             const profilePhoto = data.picture;
             const tokenExpirySeconds = data.expires_in;
             const tokenType = data.token_type;
@@ -53,8 +68,8 @@ const GoogleRegistration = () => {
             first_name: firstName,
             last_name: lastName,
             email: email,
-            password: "Google",
-            password2: "Google",
+            password: password,
+            password2: password2,
             // tc: termsAndConditions,
             tc: true,
         };

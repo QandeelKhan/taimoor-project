@@ -1,23 +1,58 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface TokenState {
-    access_token: String | any;
-    refresh_token: String | any;
-}
-
-const initialState: TokenState = {
-    // because token initially can be null
+const initialState = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    password2: "",
+    termsAndConditions: "",
+    providerName: "",
     access_token: null,
     refresh_token: null,
+    isLoading: false,
+    error: null,
 };
 
-export const authSlice = createSlice({
+const slice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        // it can take a state and action, we pass our access token from the ui component as payload to the action
-        // and as a result that 'access_token' will set as initial state from the value of token
+        setFirstName: (state, action) => {
+            state.firstName = action.payload;
+        },
+        setLastName: (state, action) => {
+            state.lastName = action.payload;
+        },
+        setEmail: (state, action) => {
+            state.email = action.payload;
+        },
+        setPassword: (state, action) => {
+            state.password = action.payload;
+        },
+        setPassword2: (state, action) => {
+            state.password2 = action.payload;
+        },
+        setTermsAndConditions: (state, action) => {
+            state.termsAndConditions = action.payload;
+        },
+        setProviderName: (state, action) => {
+            state.providerName = action.payload;
+            switch (action.payload) {
+                case "google":
+                    state.password = "google";
+                    state.password2 = "google";
+                    break;
+                case "twitter":
+                    state.password = "twitter";
+                    state.password2 = "twitter";
+                    break;
+                default:
+                    state.password = "";
+                    state.password2 = "";
+                    break;
+            }
+        },
         setUserToken: (state, action) => {
             state.access_token = action.payload.access_token;
         },
@@ -26,9 +61,26 @@ export const authSlice = createSlice({
         unSetUserToken: (state, action) => {
             state.access_token = action.payload.access_token;
         },
+        setLoading: (state, action) => {
+            state.isLoading = action.payload;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
+        },
     },
 });
 
-export const { setUserToken, unSetUserToken } = authSlice.actions;
-
-export default authSlice.reducer;
+export const {
+    setFirstName,
+    setLastName,
+    setEmail,
+    setPassword,
+    setPassword2,
+    setTermsAndConditions,
+    setProviderName,
+    setUserToken,
+    unSetUserToken,
+    setLoading,
+    setError,
+} = slice.actions;
+export default slice.reducer;
