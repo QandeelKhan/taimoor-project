@@ -1,14 +1,4 @@
 import { BaseSyntheticEvent, useState } from "react";
-// import {
-//     TextField,
-//     Button,
-//     Box,
-//     Checkbox,
-//     FormControlLabel,
-//     Typography,
-//     Alert,
-//     CssBaseline,
-// } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../redux/services/userAuthApi";
 import { storeToken } from "../../redux/services/localStorageService";
