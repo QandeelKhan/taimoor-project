@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    id: null,
     firstName: "",
     lastName: "",
     email: "",
@@ -8,8 +9,9 @@ const initialState = {
     password2: "",
     termsAndConditions: "",
     providerName: "",
-    access_token: null,
-    refresh_token: null,
+    accessToken: null,
+    refreshToken: null,
+    loggedIn: false,
     isLoading: false,
     error: null,
 };
@@ -18,6 +20,9 @@ const slice = createSlice({
     name: "auth",
     initialState,
     reducers: {
+        setId: (state, action) => {
+            state.id = action.payload;
+        },
         setFirstName: (state, action) => {
             state.firstName = action.payload;
         },
@@ -53,13 +58,18 @@ const slice = createSlice({
                     break;
             }
         },
-        setUserToken: (state, action) => {
-            state.access_token = action.payload.access_token;
+        setAccessToken: (state, action) => {
+            state.accessToken = action.payload.access_token;
         },
         // we can pass null to it from ui components to unset the token state
         // and show/hide,enable/disable routes accordingly
-        unSetUserToken: (state, action) => {
-            state.access_token = action.payload.access_token;
+        unsetAccessToken: (state, action) => {
+            state.accessToken = action.payload.access_token;
+            // state.accessToken = action.payload.access_token;
+        },
+
+        setLoggedIn: (state, action) => {
+            state.isLoading = action.payload;
         },
         setLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -67,10 +77,14 @@ const slice = createSlice({
         setError: (state, action) => {
             state.error = action.payload;
         },
+        resetUserFields: (state) => {
+            Object.assign(state, initialState);
+        },
     },
 });
 
 export const {
+    setId,
     setFirstName,
     setLastName,
     setEmail,
@@ -78,9 +92,11 @@ export const {
     setPassword2,
     setTermsAndConditions,
     setProviderName,
-    setUserToken,
-    unSetUserToken,
+    setAccessToken,
+    unsetAccessToken,
+    setLoggedIn,
     setLoading,
     setError,
+    resetUserFields,
 } = slice.actions;
 export default slice.reducer;

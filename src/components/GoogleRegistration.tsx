@@ -11,8 +11,6 @@ import {
     setFirstName,
     setLastName,
     setEmail,
-    setPassword,
-    setPassword2,
     setProviderName,
 } from "../redux/features/authSlice";
 

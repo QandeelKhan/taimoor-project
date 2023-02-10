@@ -6,7 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { userAuthApi } from "./services/userAuthApi";
 import authReducer from "./features/authSlice";
-import userReducer from "./features/userSlice";
+// import userReducer from "./features/userSlice";
 // ...
 
 export const store = configureStore({
@@ -17,7 +17,7 @@ export const store = configureStore({
         // our created reducers, now we set a state from it in userLogin because whenever user
         // login the process will start by setting our generated token as state in our app
         auth: authReducer,
-        user: userReducer,
+        // user: userReducer,
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.

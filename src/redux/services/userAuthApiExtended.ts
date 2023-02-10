@@ -5,7 +5,7 @@ import {
     fetchBaseQuery,
     FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import { setUserToken, unSetUserToken } from "../features/authSlice";
+import { setAccessToken, unsetAccessToken } from "../features/authSlice";
 import {
     getToken,
     removeAccessToken,
@@ -50,13 +50,13 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
             let { access: access_token } = refreshResult.data;
 
             console.log("---------------new access token ", access_token);
-            api.dispatch(setUserToken({ access_token: access_token }));
+            api.dispatch(setAccessToken({ access_token: access_token }));
             // retry the initial query
             result = await baseQuery(args, api, extraOptions);
             const storeObj = { access: access_token, refresh: refresh_token };
             storeToken(storeObj);
         } else {
-            api.dispatch(unSetUserToken({ access_token: null }));
+            api.dispatch(unsetAccessToken({ access_token: null }));
         }
     }
     return result;
