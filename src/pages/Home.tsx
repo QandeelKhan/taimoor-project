@@ -6,7 +6,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { getToken, removeToken } from "../redux/services/localStorageService";
 import { useDispatch } from "react-redux";
-import { useGetLoggedUserQuery } from "../redux/services/userAuthApi";
+import {
+    useGetLoggedUserQuery,
+    useLogoutUserMutation,
+} from "../redux/services/userAuthApi";
 // import { setUserInfo, unSetUserInfo } from "../redux/features/userSlice";
 import {
     setEmail,
@@ -51,6 +54,10 @@ const Home = () => {
         removeToken();
         // navigate("/login");
     };
+
+    // for logout
+
+    const LogoutButton = () => {};
     return (
         <>
             <Helmet>

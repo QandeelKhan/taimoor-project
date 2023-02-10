@@ -110,6 +110,18 @@ export const userAuthApi = userAuthApiExtended.injectEndpoints({
                 };
             },
         }),
+        logoutUser: builder.mutation({
+            query: (access_token) => {
+                return {
+                    url: `logout/`,
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                        authorization: `Bearer ${access_token}`,
+                    },
+                };
+            },
+        }),
     }),
 });
 
@@ -132,6 +144,7 @@ export const {
     useChangeUserPasswordMutation,
     useSendPasswordResetEmailMutation,
     useResetPasswordMutation,
+    useLogoutUserMutation,
 } = userAuthApi;
 
 // const refreshResult = await baseQuery(
