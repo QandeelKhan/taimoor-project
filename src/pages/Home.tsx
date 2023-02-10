@@ -9,12 +9,10 @@ import { useDispatch } from "react-redux";
 import { useGetLoggedUserQuery } from "../redux/services/userAuthApi";
 // import { setUserInfo, unSetUserInfo } from "../redux/features/userSlice";
 import {
-    resetUserFields,
     setEmail,
     setFirstName,
     setId,
     setLastName,
-    setLoggedIn,
 } from "../redux/features/authSlice";
 
 const Home = () => {
@@ -33,18 +31,9 @@ const Home = () => {
     });
     console.log("My user data", data);
 
-    const { firstName, lastName, email, id, loggedIn, accessToken } =
-        useSelector((state: RootState) => state.auth);
-
-    // on logout, unset data in store,unset token in store.remove token from browser
-    const handleLogout = () => {
-        // dispatch(unSetUserInfo());
-        removeToken();
-        dispatch(resetUserFields());
-
-        // dispatch(setLoggedIn(false));
-        // navigate("/login");
-    };
+    const { firstName, lastName, email, id, loggedIn } = useSelector(
+        (state: RootState) => state.auth
+    );
 
     // storing user profile data in state
     useEffect(() => {
@@ -56,10 +45,12 @@ const Home = () => {
         }
     }, [data, isSuccess, dispatch]);
 
-    useEffect(() => {
-        handleLogout();
-    }, [resetUserFields]);
-
+    // on logout, unset data in store,unset token in store.remove token from browser
+    const handleLogout = () => {
+        // dispatch(unSetUserInfo());
+        removeToken();
+        // navigate("/login");
+    };
     return (
         <>
             <Helmet>
@@ -86,16 +77,19 @@ const Home = () => {
                     <h1>
                         i am home {firstName} {lastName}
                     </h1>
-                    <div>
-                        <button onClick={handleLogout}>LogOut</button>
-                    </div>
-                    <>
-                        <Link to={"/registration"}>Sign Up</Link>
-                        <br />
-                        <Link to={"/login"}>Login</Link>
-                        {console.log(loggedIn)}
-                        {console.log(data)}
-                    </>
+                    {id ? (
+                        <div>
+                            <button onClick={handleLogout}>LogOut</button>
+                        </div>
+                    ) : (
+                        <>
+                            <Link to={"/registration"}>Sign Up</Link>
+                            <br />
+                            <Link to={"/login"}>Login</Link>
+                            {console.log(loggedIn)}
+                            {console.log(data)}
+                        </>
+                    )}
                 </div>
             </section>
         </>

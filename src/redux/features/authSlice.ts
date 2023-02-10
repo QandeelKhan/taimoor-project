@@ -9,8 +9,8 @@ const initialState = {
     password2: "",
     termsAndConditions: "",
     providerName: "",
-    accessToken: null,
-    refreshToken: null,
+    access_token: null,
+    refresh_token: null,
     loggedIn: false,
     isLoading: false,
     error: null,
@@ -58,14 +58,13 @@ const slice = createSlice({
                     break;
             }
         },
-        setAccessToken: (state, action) => {
-            state.accessToken = action.payload.access_token;
+        setUserToken: (state, action) => {
+            state.access_token = action.payload.access_token;
         },
         // we can pass null to it from ui components to unset the token state
         // and show/hide,enable/disable routes accordingly
-        unsetAccessToken: (state, action) => {
-            state.accessToken = action.payload.access_token;
-            // state.accessToken = action.payload.access_token;
+        unSetUserToken: (state, action) => {
+            state.access_token = action.payload.access_token;
         },
 
         setLoggedIn: (state, action) => {
@@ -76,9 +75,6 @@ const slice = createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload;
-        },
-        resetUserFields: (state) => {
-            Object.assign(state, initialState);
         },
     },
 });
@@ -92,11 +88,9 @@ export const {
     setPassword2,
     setTermsAndConditions,
     setProviderName,
-    setAccessToken,
-    unsetAccessToken,
-    setLoggedIn,
+    setUserToken,
+    unSetUserToken,
     setLoading,
     setError,
-    resetUserFields,
 } = slice.actions;
 export default slice.reducer;

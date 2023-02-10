@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/services/userAuthApi";
 import { getToken, storeToken } from "../../redux/services/localStorageService";
 import { useDispatch } from "react-redux";
-import { setLoggedIn, setAccessToken } from "../../redux/features/authSlice";
-import GoogleRegistration from "../../components/GoogleRegistration";
-import { Link } from "react-router-dom";
+import { setUserToken } from "../../redux/features/authSlice";
 
 const Login = () => {
     const [serverError, setServerError] = useState<any>({});
@@ -36,7 +34,7 @@ const Login = () => {
             // res.data.token give us obj of 2 tokens "access" and refresh
             storeToken(res.data.token);
             let { access_token } = getToken();
-            dispatch(setAccessToken({ access_token: access_token }));
+            dispatch(setUserToken({ access_token: access_token }));
 
             navigate("/");
         }
@@ -44,7 +42,7 @@ const Login = () => {
 
     let { access_token } = getToken();
     useEffect(() => {
-        dispatch(setAccessToken({ access_token: access_token }));
+        dispatch(setUserToken({ access_token: access_token }));
     }, [access_token, dispatch]);
 
     return (
@@ -79,9 +77,6 @@ const Login = () => {
                 )}
                 <button type="submit">Login</button>
             </form>
-            <Link to={"/"}>
-                <GoogleRegistration />
-            </Link>
         </>
     );
 };

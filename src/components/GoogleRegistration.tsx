@@ -12,6 +12,7 @@ import {
     setLastName,
     setEmail,
     setProviderName,
+    setUserToken,
 } from "../redux/features/authSlice";
 
 const GoogleRegistration = () => {
@@ -21,7 +22,7 @@ const GoogleRegistration = () => {
     );
     const dispatch = useDispatch();
 
-    const [accessToken, setAccessToken] = React.useState("");
+    // const [accessToken, setAccessToken] = React.useState("");
     const [registerUser, { isLoading }] = useRegisterUserMutation();
     const [verifiedGoogleUser, setVerifiedGoogleUser] = useState(false);
     // const history = useHistory();
@@ -49,7 +50,7 @@ const GoogleRegistration = () => {
             dispatch(setLastName(lastName));
             dispatch(setEmail(data.email));
             dispatch(setProviderName(provider));
-            setAccessToken(data.access_token);
+            dispatch(setUserToken(data.access_token));
 
             const profilePhoto = data.picture;
             const tokenExpirySeconds = data.expires_in;

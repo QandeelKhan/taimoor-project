@@ -12,7 +12,7 @@ import { useLoginUserMutation } from "../../redux/services/userAuthApi";
 
 import { getToken, storeToken } from "../../redux/services/localStorageService";
 import { useDispatch } from "react-redux";
-import { setAccessToken } from "../../redux/features/authSlice";
+import { setUserToken } from "../../redux/features/authSlice";
 
 const Login = () => {
     const [serverError, setServerError] = useState<any>({});
@@ -46,7 +46,7 @@ const Login = () => {
             storeToken(res.data.token);
             // from above line we set token and get it for setting as redux state and access from anywhere in app
             let { access_token } = getToken();
-            dispatch(setAccessToken({ access_token: access_token }));
+            dispatch(setUserToken({ access_token: access_token }));
 
             navigate("/dashboard");
         }
@@ -55,7 +55,7 @@ const Login = () => {
     // have access_token.
     let { access_token } = getToken();
     useEffect(() => {
-        dispatch(setAccessToken({ access_token: access_token }));
+        dispatch(setUserToken({ access_token: access_token }));
         // access_token and dispatch as dependencies array so that logic will
         // work until we have token(user logged in)
     }, [access_token, dispatch]);
